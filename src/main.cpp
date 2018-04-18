@@ -1396,10 +1396,10 @@ int64_t GetProofOfStakeReward(const CBlockIndex* pindexPrev, int64_t nCoinAge, i
     else if (heigth <= 50000)  {
         nSubsidy = 17.5 * COIN;
     }
-    else if (heigth <= 200000)  {
+    else if (heigth <= 200000) {
         nSubsidy = 20 * COIN;
     }
-    else{
+    else if (heigth > 200000) {
         nSubsidy = 25 * COIN;
     }
 
@@ -3547,7 +3547,7 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv)
         CAddress addrFrom;
         uint64_t nNonce = 1;
         vRecv >> pfrom->nVersion >> pfrom->nServices >> nTime >> addrMe;
-        if (pfrom->nVersion < MIN_PEER_PROTO_VERSION)
+        if (pfrom->nVersion < MIN_PEER_PROTO_VERSION && nBestHeight >= 400)
         {
             // disconnect from peers older than this proto version
             LogPrintf("partner %s using obsolete version %i; disconnecting\n", pfrom->addr.ToString(), pfrom->nVersion);
@@ -4510,7 +4510,10 @@ bool SendMessages(CNode* pto, bool fSendTrickle)
 
 int64_t GetMasternodePayment(int nHeight, int64_t blockValue)
 {
-    int64_t ret = blockValue * 3/4; //75%
+    int64_t ret = 0;
 
+    if (nHeight >= 3333) {
+	ret = blockValue * 80/100; //80%
+    }
     return ret;
 }

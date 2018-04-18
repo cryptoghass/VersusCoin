@@ -193,7 +193,7 @@ Value getdifficulty(const Array& params, bool fHelp)
     //Object obj;
     //obj.push_back(Pair("proof-of-work",        GetDifficulty()));
     //obj.push_back(Pair("proof-of-stake",       GetDifficulty(GetLastBlockIndex(pindexBest, true))));
-    return GetDifficulty(GetLastBlockIndex(pindexBest, true));
+    return GetDifficulty();
 }
 
 
