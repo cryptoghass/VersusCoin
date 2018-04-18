@@ -141,3 +141,8 @@ Tell us more about the platform to come out.
 
 Тhe platform will be free to use for everyone. There will be some features and applications for business use protected by copyright and a small one-time payment will be required to unlock them. We will not share much details yet, but one of the subapplications will be proof of digital identity.
 
+
+
+Install 
+
+Read /doc
