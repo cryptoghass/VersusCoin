@@ -1406,7 +1406,8 @@ int64_t GetProofOfStakeReward(const CBlockIndex* pindexPrev, int64_t nCoinAge, i
     return nSubsidy + nFees;
 }
 
-static int64_t nTargetTimespan = 10 * 60;  // 10 mins
+
+static int64_t nTargetTimespan = 10 * 66;  // 10 mins
 
 // ppcoin: find last block index up to pindex
 const CBlockIndex* GetLastBlockIndex(const CBlockIndex* pindex, bool fProofOfStake)
@@ -1418,9 +1419,14 @@ const CBlockIndex* GetLastBlockIndex(const CBlockIndex* pindex, bool fProofOfSta
 
 unsigned int GetNextTargetRequired(const CBlockIndex* pindexLast, bool fProofOfStake)
 {
-    if(pindexLast->GetBlockTime() > STAKE_TIMESPAN_SWITCH_TIME)
-	nTargetTimespan = 2 * 60; // 2 minutes
-
+    if(pindexLast->GetBlockTime() > STAKE_TIMESPAN_SWITCH_TIME) {
+	if(pindexLast->nHeight >= FBLOCK){
+		nTargetTimespan = 2 * 66; // 2 minutes
+	}
+	else{
+		nTargetTimespan = 2 * 60; // 2 minutes
+	}
+    }
     CBigNum bnTargetLimit = fProofOfStake ? GetProofOfStakeLimit(pindexLast->nHeight) : Params().ProofOfWorkLimit();
 
     if (pindexLast == NULL)
@@ -3547,7 +3553,7 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv)
         CAddress addrFrom;
         uint64_t nNonce = 1;
         vRecv >> pfrom->nVersion >> pfrom->nServices >> nTime >> addrMe;
-        if (pfrom->nVersion < MIN_PEER_PROTO_VERSION && nBestHeight >= 400)
+        if (pfrom->nVersion < MIN_PEER_PROTO_VERSION && nBestHeight >= FBLOCK)
         {
             // disconnect from peers older than this proto version
             LogPrintf("partner %s using obsolete version %i; disconnecting\n", pfrom->addr.ToString(), pfrom->nVersion);
