@@ -83,11 +83,11 @@ masternode outputs
 
 > This is an example of masternode.conf
 ```
-mn1 your_vps_ip_address:18053 your_masternode_key_output_from-masternode_genkey txhash_from-masternode_outputs Outputidx_from-masternode_outputs
+mn1 your_vps_ip_address:78037 your_masternode_key_output_from-masternode_genkey txhash_from-masternode_outputs Outputidx_from-masternode_outputs
 ```
 > The file will contain an example that is commented out(with a # in front), but based on the above values, I would add this line in:
 ```
-MN1 12.34.23.123:18053 22QquBKez3GzowbsjApNVDpPtkdZtMcPWAfYhvH33yYqyoiQddq 103246466dc7392f52826bb9f5fb5542d2e1e718462f68b552c861437ed63d43 0
+MN1 12.34.23.123:78037 22QquBKez3GzowbsjApNVDpPtkdZtMcPWAfYhvH33yYqyoiQddq 103246466dc7392f52826bb9f5fb5542d2e1e718462f68b552c861437ed63d43 0
 ```
 >   Where `12.34.23.123` is the external IP of the masternode server that will provide services to the network.
 
