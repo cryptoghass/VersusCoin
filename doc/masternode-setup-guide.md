@@ -83,11 +83,11 @@ masternode outputs
 
 > This is an example of masternode.conf
 ```
-mn1 your_vps_ip_address:78037 your_masternode_key_output_from-masternode_genkey txhash_from-masternode_outputs Outputidx_from-masternode_outputs
+mn1 your_vps_ip_address:12501 your_masternode_key_output_from-masternode_genkey txhash_from-masternode_outputs Outputidx_from-masternode_outputs
 ```
 > The file will contain an example that is commented out(with a # in front), but based on the above values, I would add this line in:
 ```
-MN1 12.34.23.123:78037 22QquBKez3GzowbsjApNVDpPtkdZtMcPWAfYhvH33yYqyoiQddq 103246466dc7392f52826bb9f5fb5542d2e1e718462f68b552c861437ed63d43 0
+MN1 12.34.23.123:12501 22QquBKez3GzowbsjApNVDpPtkdZtMcPWAfYhvH33yYqyoiQddq 103246466dc7392f52826bb9f5fb5542d2e1e718462f68b552c861437ed63d43 0
 ```
 >   Where `12.34.23.123` is the external IP of the masternode server that will provide services to the network.
 
@@ -154,12 +154,12 @@ sudo echo '/mnt/1500MB.swap  none  swap  sw 0  0' >> /etc/fstab
 ```
 sudo ufw allow 22/tcp
 sudo ufw limit 22/tcp
-sudo ufw allow 78037/tcp
+sudo ufw allow 12501/tcp
 sudo ufw logging on
 sudo ufw --force enable
 ```
 
-If you are running the MasterNode server in Amazon AWS or another place where additional firewalls are in place, you need to allow incoming connections on port 78037/TCP
+If you are running the MasterNode server in Amazon AWS or another place where additional firewalls are in place, you need to allow incoming connections on port 12501/TCP
 
 
 
@@ -211,8 +211,8 @@ server=1
 daemon=1
 maxconnections=250
 masternode=1
-externalip=<ip_address_here>:78037
-masternodeaddr=<ip_address_here>:78037
+externalip=<ip_address_here>:12501
+masternodeaddr=<ip_address_here>:12501
 masternodeprivkey=<the_colw_wallet_genkey_value_here>
 a
 ```
@@ -229,8 +229,8 @@ server=1
 daemon=1
 maxconnections=250
 masternode=1
-externalip=12.34.23.123:78037
-masternodeaddr=12.34.23.123:78037
+externalip=12.34.23.123:12501
+masternodeaddr=12.34.23.123:12501
 masternodeprivkey=22QquBKez3GzowbsjApNVDpPtkdZtMcPWAfYhvH33yYqyoiQddq
 
 ```
